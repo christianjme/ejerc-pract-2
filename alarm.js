@@ -1,7 +1,7 @@
-export function alarm(alarm, alarmStart, alarmStop) {
+export function alarm(rutaAlarm, alarmStart, alarmStop) {
   const d = document
-  const audioHTML = document.createElement('audio')
-  audioHTML.setAttribute('src', alarm)
+  const audioHTML = d.createElement('audio')
+  audioHTML.setAttribute('src', rutaAlarm)
   d.addEventListener('click', e=>{
     if (e.target.matches(alarmStart)) {
       audioHTML.play();
@@ -10,8 +10,9 @@ export function alarm(alarm, alarmStart, alarmStop) {
     }
     if (e.target.matches(alarmStop)) {
       audioHTML.pause();
-      d.querySelector(alarmStop).setAttribute("disabled", true);
+      audioHTML.currentTime = 0
       d.querySelector(alarmStart).removeAttribute("disabled");
+      d.querySelector(alarmStop).setAttribute("disabled", true);
     }
   })
 }
